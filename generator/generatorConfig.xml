@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- classPathEntry:数据库的JDBC驱动的jar包地址 -->
+	<classPathEntry location="D:\Work\lib\mysql-connector-java-5.1.39.jar" />
+	<context id="context1">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/mpassport" userId="root"
+			password="root123" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		
+		<javaModelGenerator targetPackage="com.mtime.springboot.model.po"
+			targetProject="mtime-springboot">
+			<property name="trimStrings" value="true" />
+	    </javaModelGenerator>
+		
+		<sqlMapGenerator targetPackage="com.mtime.springboot.dao.mapper" 
+			targetProject="mtime-springboot" />
+		 
+		<javaClientGenerator targetPackage="com.mtime.springboot.dao.mapper"
+			targetProject="mtime-springboot" type="XMLMAPPER" />
+		
+			<table  tableName="muser" domainObjectName="MuserPO" ></table>
+			<table  tableName="museraddress" domainObjectName="MuseraddressPO" ></table>
+			<table  tableName="muserinfo" domainObjectName="MuserinfoPO" ></table>
+			<table  tableName="musermail" domainObjectName="MusermailPO" ></table>
+			<table  tableName="musermobile" domainObjectName="MusermobilePO" ></table>
+			<table  tableName="muserpassword" domainObjectName="MuserpasswordPO" ></table>
+			<table  tableName="muserqq" domainObjectName="MuserqqPO" ></table>
+			<table  tableName="musersina" domainObjectName="MusersinaPO" ></table>
+			<table  tableName="musertoken" domainObjectName="MusertokenPO" ></table>
+			<table  tableName="musertokenlog" domainObjectName="MusertokenlogPO" ></table>
+			<table  tableName="muserwechat" domainObjectName="MuserwechatPO" ></table>
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mtime.springboot.dao.mapper.MusermailPOMapper">
+  <resultMap id="BaseResultMap" type="com.mtime.springboot.model.po.MusermailPO">
+    <id column="email_id" jdbcType="BIGINT" property="emailId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="user_source" jdbcType="TINYINT" property="userSource" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    email_id, user_id, email, status, is_delete, user_source, create_time, creater, update_time, 
+    updater
+  </sql>
+  <select id="selectByExample" parameterType="com.mtime.springboot.model.po.MusermailPOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from musermail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from musermail
+    where email_id = #{emailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from musermail
+    where email_id = #{emailId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mtime.springboot.model.po.MusermailPOExample">
+    delete from musermail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mtime.springboot.model.po.MusermailPO">
+    insert into musermail (email_id, user_id, email, 
+      status, is_delete, user_source, 
+      create_time, creater, update_time, 
+      updater)
+    values (#{emailId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{isDelete,jdbcType=BIT}, #{userSource,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=BIGINT}, #{creater,jdbcType=VARCHAR}, #{updateTime,jdbcType=BIGINT}, 
+      #{updater,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mtime.springboot.model.po.MusermailPO">
+    insert into musermail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="emailId != null">
+        email_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="userSource != null">
+        user_source,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="emailId != null">
+        #{emailId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="userSource != null">
+        #{userSource,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mtime.springboot.model.po.MusermailPOExample" resultType="java.lang.Long">
+    select count(*) from musermail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update musermail
+    <set>
+      <if test="record.emailId != null">
+        email_id = #{record.emailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIT},
+      </if>
+      <if test="record.userSource != null">
+        user_source = #{record.userSource,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.creater != null">
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update musermail
+    set email_id = #{record.emailId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      email = #{record.email,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      user_source = #{record.userSource,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      updater = #{record.updater,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mtime.springboot.model.po.MusermailPO">
+    update musermail
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="userSource != null">
+        user_source = #{userSource,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where email_id = #{emailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mtime.springboot.model.po.MusermailPO">
+    update musermail
+    set user_id = #{userId,jdbcType=BIGINT},
+      email = #{email,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=BIT},
+      user_source = #{userSource,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      creater = #{creater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      updater = #{updater,jdbcType=VARCHAR}
+    where email_id = #{emailId,jdbcType=BIGINT}
+  </update>
+</mapper>

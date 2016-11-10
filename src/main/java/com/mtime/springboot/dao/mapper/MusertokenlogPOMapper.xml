@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mtime.springboot.dao.mapper.MusertokenlogPOMapper">
+  <resultMap id="BaseResultMap" type="com.mtime.springboot.model.po.MusertokenlogPO">
+    <id column="token_log_id" jdbcType="BIGINT" property="tokenLogId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="plat_info" jdbcType="VARCHAR" property="platInfo" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_time" jdbcType="BIGINT" property="loginTime" />
+    <result column="logout_time" jdbcType="BIGINT" property="logoutTime" />
+    <result column="broken_time" jdbcType="BIGINT" property="brokenTime" />
+    <result column="timeout_time" jdbcType="BIGINT" property="timeoutTime" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    token_log_id, user_id, nick_name, mobile, email, avatar_url, token, lat, lng, plat_info, 
+    login_ip, login_time, logout_time, broken_time, timeout_time, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.mtime.springboot.model.po.MusertokenlogPOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from musertokenlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from musertokenlog
+    where token_log_id = #{tokenLogId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from musertokenlog
+    where token_log_id = #{tokenLogId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mtime.springboot.model.po.MusertokenlogPOExample">
+    delete from musertokenlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mtime.springboot.model.po.MusertokenlogPO">
+    insert into musertokenlog (token_log_id, user_id, nick_name, 
+      mobile, email, avatar_url, 
+      token, lat, lng, plat_info, 
+      login_ip, login_time, logout_time, 
+      broken_time, timeout_time, create_time, 
+      update_time)
+    values (#{tokenLogId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, #{platInfo,jdbcType=VARCHAR}, 
+      #{loginIp,jdbcType=VARCHAR}, #{loginTime,jdbcType=BIGINT}, #{logoutTime,jdbcType=BIGINT}, 
+      #{brokenTime,jdbcType=BIGINT}, #{timeoutTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mtime.springboot.model.po.MusertokenlogPO">
+    insert into musertokenlog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tokenLogId != null">
+        token_log_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="avatarUrl != null">
+        avatar_url,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="platInfo != null">
+        plat_info,
+      </if>
+      <if test="loginIp != null">
+        login_ip,
+      </if>
+      <if test="loginTime != null">
+        login_time,
+      </if>
+      <if test="logoutTime != null">
+        logout_time,
+      </if>
+      <if test="brokenTime != null">
+        broken_time,
+      </if>
+      <if test="timeoutTime != null">
+        timeout_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tokenLogId != null">
+        #{tokenLogId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null">
+        #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="platInfo != null">
+        #{platInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=BIGINT},
+      </if>
+      <if test="logoutTime != null">
+        #{logoutTime,jdbcType=BIGINT},
+      </if>
+      <if test="brokenTime != null">
+        #{brokenTime,jdbcType=BIGINT},
+      </if>
+      <if test="timeoutTime != null">
+        #{timeoutTime,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mtime.springboot.model.po.MusertokenlogPOExample" resultType="java.lang.Long">
+    select count(*) from musertokenlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update musertokenlog
+    <set>
+      <if test="record.tokenLogId != null">
+        token_log_id = #{record.tokenLogId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.nickName != null">
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avatarUrl != null">
+        avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.token != null">
+        token = #{record.token,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lat != null">
+        lat = #{record.lat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lng != null">
+        lng = #{record.lng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platInfo != null">
+        plat_info = #{record.platInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginIp != null">
+        login_ip = #{record.loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginTime != null">
+        login_time = #{record.loginTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.logoutTime != null">
+        logout_time = #{record.logoutTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.brokenTime != null">
+        broken_time = #{record.brokenTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.timeoutTime != null">
+        timeout_time = #{record.timeoutTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update musertokenlog
+    set token_log_id = #{record.tokenLogId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
+      token = #{record.token,jdbcType=VARCHAR},
+      lat = #{record.lat,jdbcType=VARCHAR},
+      lng = #{record.lng,jdbcType=VARCHAR},
+      plat_info = #{record.platInfo,jdbcType=VARCHAR},
+      login_ip = #{record.loginIp,jdbcType=VARCHAR},
+      login_time = #{record.loginTime,jdbcType=BIGINT},
+      logout_time = #{record.logoutTime,jdbcType=BIGINT},
+      broken_time = #{record.brokenTime,jdbcType=BIGINT},
+      timeout_time = #{record.timeoutTime,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mtime.springboot.model.po.MusertokenlogPO">
+    update musertokenlog
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null">
+        avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="platInfo != null">
+        plat_info = #{platInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        login_time = #{loginTime,jdbcType=BIGINT},
+      </if>
+      <if test="logoutTime != null">
+        logout_time = #{logoutTime,jdbcType=BIGINT},
+      </if>
+      <if test="brokenTime != null">
+        broken_time = #{brokenTime,jdbcType=BIGINT},
+      </if>
+      <if test="timeoutTime != null">
+        timeout_time = #{timeoutTime,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where token_log_id = #{tokenLogId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mtime.springboot.model.po.MusertokenlogPO">
+    update musertokenlog
+    set user_id = #{userId,jdbcType=BIGINT},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      plat_info = #{platInfo,jdbcType=VARCHAR},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=BIGINT},
+      logout_time = #{logoutTime,jdbcType=BIGINT},
+      broken_time = #{brokenTime,jdbcType=BIGINT},
+      timeout_time = #{timeoutTime,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where token_log_id = #{tokenLogId,jdbcType=BIGINT}
+  </update>
+</mapper>
