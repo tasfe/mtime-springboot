@@ -8,12 +8,11 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.Page;
-
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 public class DataPager<T> {
 	private List<T> rows; // 当页记录
@@ -260,7 +259,7 @@ public class DataPager<T> {
 		dataFormat.formatCode("status");
 		dataFormat.formatCode("type");
 		String json = null;
-		/*try {
+		try {
 			json = JSON.toJSONString(this);
 			JSONObject root = JSON.parseObject(json);
 			JSONArray rows = root.getJSONArray("rows");
@@ -292,7 +291,7 @@ public class DataPager<T> {
 			json = rootObj.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 		return json;
 	}
 
@@ -313,7 +312,7 @@ public class DataPager<T> {
 		dataFormat.formatCode("status");
 		dataFormat.formatCode("type");
 		String json = null;
-	/*	try {
+		try {
 			json = JSON.toJSONString(this);
 			JSONObject root = JSON.parseObject(json);
 			JSONArray rows = root.getJSONArray("rows");
@@ -343,7 +342,7 @@ public class DataPager<T> {
 			json = rootObj.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 		return json;
 	}
 
@@ -353,8 +352,7 @@ public class DataPager<T> {
 	 * @return
 	 */
 	public String toJson(DataFormat dataFormat) {
-		String json = null;
-		/*if (null == dataFormat) {
+		if (null == dataFormat) {
 			dataFormat = new DataFormat();
 		}
 		dataFormat.formatDate("createTime", "yyyy-MM-dd HH:mm:ss");
@@ -392,7 +390,7 @@ public class DataPager<T> {
 			json = rootObj.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 		return json;
 	}
 
