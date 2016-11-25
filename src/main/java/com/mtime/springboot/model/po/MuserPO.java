@@ -3,7 +3,7 @@ package com.mtime.springboot.model.po;
 public class MuserPO {
     private Long userId;
 
-    private String mobile;
+    public String mobile;
 
     private String email;
 
