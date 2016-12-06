@@ -11,8 +11,7 @@ public class ZookeeperTest {
 	
 	public static void main(String args[]) throws Exception{
 		
-		String s=ZookeeperManager.create("/zh", "zhname".getBytes());
-		System.out.println(s);
+		
 		
 		// 创建一个与服务器的连接 需要(服务端的 ip+端口号)(session过期时间)(Watcher监听注册) 
 		 ZooKeeper zk = new ZooKeeper("127.0.0.1:2181", 
@@ -23,6 +22,13 @@ public class ZookeeperTest {
 						System.out.println("已经触发了" + event.getType() + "事件！"); 
 					} 
 		  });
+		 
+		
+		 
+		 zk.create("/abc", "127.0.s0.1".getBytes(), Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL); 
+		 zk.create("/abc/bbb", "127.0.s0.1".getBytes(), Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL); 
+		 
+		 
 
 		 // 创建一个目录节点
 		 /**
@@ -32,7 +38,7 @@ public class ZookeeperTest {
 		  *		EPHEMERAL (短暂的，生命周期依赖于client session)
 		  *		EPHEMERAL_SEQUENTIAL  (短暂的，带顺序的)
 		  */
-		 zk.create("/testRootPath", "testRootData".getBytes(), Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT); 
+		 /*zk.create("/testRootPath", "testRootData".getBytes(), Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT); 
 		 
 		 //zk.create
 		 
@@ -56,7 +62,7 @@ public class ZookeeperTest {
 		 //删除整个子目录   -1代表version版本号，-1是删除所有版本
 		 zk.delete("/testRootPath/testChildPathOne", -1);	 
 		 System.out.println(zk.getChildren("/testRootPath",true)); 
-		 System.out.println(str);
+		 System.out.println(str);*/
 		
 	}
 }
